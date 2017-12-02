@@ -1,0 +1,108 @@
+
+pubtitle {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
+
+pubauthors {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+}
+
+pubvenue {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  color: black;
+}
+
+pubinfo {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Proza Libre', sans-serif;
+  font-style: normal;
+  color: #333333;
+}
+
+ptitle {
+  font-size: 42px;
+  font-weight: 400;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+stitle {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+ptext {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+scholar {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+it {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: italic;
+}
+
+email {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Source Code Pro', sans-serif;
+}
+
+table.base {
+  background-color: white;
+  border: 0px solid black;
+  border-collapse: collapse;
+  width: 1000
+}
+
+table.research {
+  background-color: white;
+  border: 0px solid black;
+  border-collapse: collapse;
+  width: 1000
+}
+
+table.research td {
+    padding-top: 0em;
+    padding-bottom: 2.5em;
+}
+
+a:link {
+  text-decoration:  none;
+  color: #4285F4;
+}
+
+a:visited {
+  text-decoration:  none;
+  color: #4285F4;
+}
+
+a:hover {
+  text-decoration:  none;
+  color: #4285F4;
+}
+
+a:active {
+  text-decoration:  none;
+  color: #4285F4;
+}
+
+td.gap {
+  width: 20;
+}
