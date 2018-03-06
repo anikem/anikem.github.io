@@ -19,6 +19,8 @@ pubvenue {
   color: black;
 }
 
+span.special { color:#FF5050; }
+
 pubinfo {
   font-size: 16px;
   font-weight: 300;
