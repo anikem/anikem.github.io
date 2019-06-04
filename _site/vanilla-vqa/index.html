@@ -1,0 +1,509 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Vanilla VQA - Aniruddha (Ani) Kembhavi</title>
+<meta name="description" content="An introduction to visual question answering">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Aniruddha (Ani) Kembhavi">
+<meta property="og:title" content="Vanilla VQA">
+<meta property="og:url" content="http://localhost:4000/vanilla-vqa/">
+
+
+  <meta property="og:description" content="An introduction to visual question answering">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-05-25T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/vanilla-vqa/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aniruddha Kembhavi",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Aniruddha (Ani) Kembhavi Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<link href="https://fonts.googleapis.com/css?family=Proza+Libre|Raleway|Roboto|Source+Sans+Pro&display=swap" rel="stylesheet">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">Aniruddha (Ani) Kembhavi</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/research/" >Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/" >Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style="background-color: #1d1d1d; "
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Vanilla VQA
+
+        
+      </h1>
+      
+        <p class="page__lead">An introduction to visual question answering
+</p>
+      
+      
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/ani.jpg" alt="Ani Kembhavi" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ani Kembhavi</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Computer Vision Researcher
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:anik@allenai.org" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="https://anikem.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+            <li><a href="https://scholar.google.com/citations?user=JnUevM0AAAAJ" rel="nofollow noopener noreferrer"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Google Scholar</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Vanilla VQA">
+    <meta itemprop="description" content="An introduction to visual question answering">
+    <meta itemprop="datePublished" content="May 25, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Visual Question Answering (VQA) is the task of answering questions about a given piece of visual content such as an image, video or infographic.
+As seen in the examples below, answering questions about visual content requires a variety of skills include recognizing entities and objects, reasoning about their interactions with each other, both spatially and temporally, reading text, parsing audio, interpreting abstract and graphical illustrations as well as using external knowledge not directly present in the given content.</p>
+
+<p><img src="/assets/images/vanilla-vqa-intro.jpg" alt="" /></p>
+
+<p>While seemingly an easy task for humans, VQA affords several challenges to AI systems spanning the fields of natural language processing, computer vision, audio processing, knowledge representation and reasoning. Over the past few years, the advent of deep learning, availability of large datasets to train VQA models as well as the hosting of a number of benchmarking contests have contributed to a surge of interest in VQA amongst researchers in the above disciplines.</p>
+
+<h1 id="the-vqa-v1-dataset-and-metric">The VQA-v1 dataset and metric</h1>
+
+<p>One of the early datasets for this task that became quite popular was the <a href="http://arxiv.org/pdf/1505.00468.pdf">VQA-v1</a> dataset. The VQA-v1 dataset is a very large dataset consisting of two types of images: natural images (referred to as <em>real images</em>) as well as synthetic images (referred to as <em>abstract scenes</em>) and comes in two answering modalities: <em>multiple choice</em> question answering (the task of selecting the right answer amongst a set of choices) as well as <em>open ended</em> question answering (the task of generating an answer with an open ended vocabulary). Owing to its difficulty and real world applicability, <em>open ended</em> question answering about natural image content has become the most popular VQA task amongst the four dataset flavors.</p>
+
+<p>The <em>real images</em> fraction of the VQA-v1 dataset consists of over 200,000 natural images sourced from the MS-COCO dataset, a large scale dataset of images used to benchmark tasks such as object detection, segmentation and image captioning. Each image is paired with 3 questions written down by crowdsourced annotators. The dataset contains a variety of questions such as: <em>What color</em>, <em>What kind</em>, <em>Why</em>, <em>How many</em>, <em>Is the</em>, etc. To account for potential disagreements between humans for some questions as well as crowd sourcing noise, each question is accompanied by 10 answers. Most answers are short and to the point, such as <em>yes</em>, <em>no</em>, <em>red</em>, <em>dog</em> and <em>coca cola</em> with close to 99% of the answer containing 3 or fewer words.</p>
+
+<p>Given an image and a question, the goal of a VQA system is to produce an answer that matches those provided by human annotators. For the <em>open ended</em> answering modality, the evaluation metric used is:</p>
+
+<script type="math/tex; mode=display">\textrm{accuracy} = \textrm{min}\left ( \frac{\textrm{number of annotator answers that match the generated answer}}{3} , 1\right )</script>
+
+<p>The intuition behind this metric is as follows. If a system generates an answer also produced by at least 3 unique annotators, it gets a maximum score of 1 on account of producing a popular answer. If it generates an answer that isn’t present amongst the 10 candidates, it gets a score of 0, and it is assigned a fractional score if it produces an answer that is deemed rare. If the denominator 3 is lowered to 1, wrong answers in the dataset (present due to annotator noise) will receive maximum credit. Conversely, if it is raised towards 10, a system producing the right answer will only receive partial credit if the answer choices consist of synonyms or happen to contain just a few of noisy answers.</p>
+
+<p>Learn more about the VQA-v1 dataset here:</p>
+
+<div class="paper-post">
+  <div class="papertext-post">
+    <pubtitlepost><a class="paperpost" href="http://arxiv.org/pdf/1505.00468.pdf">VQA: Visual Question Answering</a></pubtitlepost>
+
+    <p class="papertext-post"></p>
+    <pubauthorspost>Stanislaw Antol, Aishwarya Agrawal, Jiasen Lu, Margaret Mitchell, Dhruv Batra, C. Lawrence Zitnick, Devi Parikh</pubauthorspost>
+    <p class="papertext-post"></p>
+    <pubvenuepost>ICCV 2015</pubvenuepost>
+  </div>
+</div>
+<p></p>
+
+<h1 id="when-open-ended-isnt-really-that-open-ended">When open ended isn’t really that open ended</h1>
+
+<p>Generating answers for open ended questions requires training a model that inputs an image and corresponding question and outputs a sequence of words using a decoder. However, training decoders is often more cumbersome than training a system that simply picks amongst a pool of K possible answers. As it turns out, most answers in datasets such as VQA-v1 tend to cluster into a manageable set of a few thousand answers. For instance the 1000 most common answers in VQA-v1 cover roughly 83% of all answers in the dataset. This allows us to reformulate the open ended question answering problem into a K-way multiple choice problem where the same K choices are presented for every question. As K increases, the number of answer choices that the model has to choose from increases. This allows the model to potentially answer a higher fraction of questions correctly, but also usually requires a larger model and more training data. Most VQA researchers work with the top 1000 answer classes.</p>
+
+<p><img src="/assets/images/vanilla-vqa-open-ended.jpg" alt="" /></p>
+
+<h1 id="a-baseline-vqa-model">A baseline VQA model</h1>
+
+<p>The image below shows the architecture of a simple VQA neural network. The image is fed into a convolutional neural network (CNN) such as ResNet-18 which outputs a feature vector encoding the contents of the image and is referred to as an image embedding. The question is featurized by computing an average of the word2vec vectors over all the words in the question, resulting in a question embedding. These embedding vectors, which compactly represent the image and question contents have different dimensions. Hence they are first projected into the same number of dimensions using corresponding fully connected layers (a linear transformation) and then combined using pointwise multiplication (multiplying values at corresponding dimensions). The final stage of the VQA model is a multilayer perceptron with a softmax non-linearity at the end that outputs a score distribution over each of the top K answers. Converting the open ended question answering to a K-way classification task allows us to train the VQA model using a cross entropy loss.</p>
+
+<p><img src="/assets/images/vanilla-vqa-baseline.jpg" alt="" /></p>
+
+<p>The image backbone is initialized with weights obtained from a network such as ResNet-18, trained on the ImageNet classification dataset. This initialization provides several advantages: First, it leads to faster training, since training a large image CNN from scratch is usually quite expensive. Second, this allows the VQA model to exploit knowledge obtained from the ImageNet dataset, which may be very useful to answer questions about objects in images. Third, if the image CNN weights are not fine-tuned on the VQA dataset, the image representations for the entire training dataset can be pre-computed and stored on disk, which results in less memory consumption while training the VQA model.</p>
+
+<h1 id="many-simple-variants-of-the-baseline-model">Many simple variants of the baseline model</h1>
+
+<p>One can easily tweak this simple VQA architecture in several ways to arrive at a bunch of different VQA models as shown in the image below.</p>
+
+<p><em>Image Embedding</em> : The image can be passed through a variety of image embedding neural networks (each pre-initilaized with the corresponding ImageNet variant). Typically, VQA task accuracy correlates well with the accuracy obtained by the network architecture on the ImageNet classification task (for example, a VQA baseline with ResNet-50 does better than a baseline with AlexNet).</p>
+
+<p>This suggests that (a) Network architectures that perform well at image classification also perform well at VQA, and (b) The knowledge obtained from ImageNet and encoded within the parameters of the image embedding network aids the task of VQA, and a better knowledge representation leads to improved metrics on VQA.</p>
+
+<p><em>Text Embedding</em> : word2vec embeddings encode each word into a fixed dimensional vector which captures the syntax and semantics of that word. One can easily substitute this embedding by any other word embedding such as Glove. Word embeddings that work better on a variety of NLP tasks, typically work better for the VQA task.</p>
+
+<p>Another simple variant, is to use a recurrent neural network such as an LSTM to encode the sequence of word embeddings, instead of simply averaging the word vectors. In contrast to averaging, using an LSTM preserves the order of the words in the question and hence leads to an improved VQA accuracy.</p>
+
+<p><em>Combining the word vectors</em> : There are several easy and cheap ways of combining representations from the image and text modality: Pointwise operations as well as concatenation. Concatenation leads to an increase in the number of parameters for the ensuing network. There isn’t a clear winner amongst these simple variants, although pointwise multiplication tends to be the most common option across research papers.</p>
+
+<p><img src="/assets/images/vanilla-vqa-baseline-variants.jpg" alt="" /></p>
+
+<h1 id="multiple-choice-vqa-systems">Multiple choice VQA systems</h1>
+
+<p>When the answer choices are known a-priori (such as in multiple choice settings), the above VQA network can be easily extended to also consume the embedding of a single answer choice. Instead of predicting an answer choice (as was done above), the network now predicts if the provided answer choice is True or False. A simple yet important modification involves replacing the final softmax function with a sigmoid function and predicting a single score. If M answer choices are provided in the multiple choice scenario, the network needs to be run M times, once for each answer choice and the final prediction involves choosing the answer choice that provided the highest score.</p>
+
+<p><img src="/assets/images/vanilla-vqa-multiple-choice.jpg" alt="" /></p>
+
+<p>When the answer choices are fed into the network, the resulting models obtain higher VQA accuracies. The disadvantage is that the network needs to be M times. Researchers have also used this variant in the open ended setting by running the model through K times, once each for the top K answers. This is slow, but it also provided improved performance.</p>
+
+<p>Learn more about simple yet powerful VQA baselines for the multiple choice and open ended settings here:</p>
+
+<div class="paper-post">
+  <div class="papertext-post">
+    <pubtitlepost><a class="paperpost" href="https://arxiv.org/pdf/1606.08390.pdf">Revisiting Visual Question Answering Baselines</a></pubtitlepost>
+
+    <p class="papertext-post"></p>
+    <pubauthorspost>Allan Jabri, Armand Joulin, Laurens van der Maaten</pubauthorspost>
+    <p class="papertext-post"></p>
+    <pubvenuepost>ECCV 2016</pubvenuepost>
+  </div>
+</div>
+<p></p>
+
+<h1 id="the-question-only-baseline">The question only baseline</h1>
+
+<p>An important baseline to consider is the question only baseline shown below which does not consider the image at all. Not looking at an image while answering a question about an image seems very counter intuitive right ? However, such a question only baseline performs reasonably well on the VQA-v1 dataset. The baseline model shown above obtains an accuracy of 57.75 where as the question only model obtains an accuracy of 48.76. These is a very high accuracy when you consider that the number of answer choices in the open ended scenario is very large (the top 1000 answers cover roughly 83% of all answers). How is this possible ?</p>
+
+<p><img src="/assets/images/vanilla-vqa-question-only.jpg" alt="" /></p>
+
+<p>While the number of answer choices for the open ended scenario is very large, the inherent structure and regularities in the world result in just a few plausible answers given a question. For instance, the question “What color is the construction cone ?” can likely be answered by simply choosing a common color, reducing the space of answers from 1000s to roughly 10. Furthermore, construction cones are dominantly orange in the color in the world. Hence simply memorizing this fact and always answering “orange” for this question results in a reasonable VQA system that does not need to look at the image.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>To summarize, Visual Question Answering (VQA), the task of answering questions about visual content, has received a lot of attention recently amongst researchers. In this blog post I described a few VQA baseline models that perform reasonably well on standard benchmarks. These models have been extended in many interesting ways including the use of visual attention modules, object detection frameworks, counting modules, methods to fuse multi-modal information, etc. which I shall discuss in future blog posts. Stay tuned!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-25T00:00:00-07:00">May 25, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Vanilla+VQA%20http%3A%2F%2Flocalhost%3A4000%2Fvanilla-vqa%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fvanilla-vqa%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fvanilla-vqa%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+            
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Aniruddha Kembhavi. &nbsp;&nbsp;&nbsp;&nbsp;<p> Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

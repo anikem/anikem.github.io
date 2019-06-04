@@ -1,0 +1,41 @@
+
+<div class="paper">
+  <div class="paperimage">
+    <img border="0" src="{{ include.image }}" width="200">
+  </div>
+
+  <div class="papertext">
+    <pubtitle><a class="homepage" href="{{ include.url }}">{{ include.title }}</a></pubtitle>
+
+    <p class="papertext">
+    <pubauthors>{{ include.authors }}</pubauthors>
+
+    <p class="papertext">
+    <pubvenue>{{ include.venue }}</pubvenue>
+    {% if include.year %}
+    <pubvenue>{{ include.year }}</pubvenue>
+    {% endif %}
+
+    <p class="papertext">
+
+    {% if include.specialtext %}
+    <pubinfo><a class="homepage" href="{{ include.specialurl }}">{{ include.specialtext }}</a></pubinfo>
+    {% endif %}
+
+    {% if include.pdf %}
+    <pubinfo><a class="homepage" href="{{ include.pdf }}">PDF</a></pubinfo>
+    {% endif %}
+
+    {% if include.project %}
+    <pubinfo><a class="homepage" href="{{ include.project }}">| Project</a></pubinfo>
+    {% endif %}
+
+    {% if include.code %}
+    <pubinfo><a class="homepage" href="{{ include.code }}">| Code</a></pubinfo>
+    {% endif %}
+
+    {% if include.video %}
+    <pubinfo><a class="homepage" href="{{ include.video }}">| Video</a></pubinfo>
+    {% endif %}
+  </div>
+</div>

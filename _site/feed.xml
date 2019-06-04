@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-04T12:05:12-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Aniruddha (Ani) Kembhavi</title><subtitle>Homepage and blog by Aniruddha (Ani) Kembhavi.</subtitle><author><name>Ani Kembhavi</name></author><entry><title type="html">Vanilla VQA</title><link href="http://localhost:4000/vanilla-vqa/" rel="alternate" type="text/html" title="Vanilla VQA" /><published>2019-05-25T00:00:00-07:00</published><updated>2019-05-25T00:00:00-07:00</updated><id>http://localhost:4000/vanilla-vqa</id><content type="html" xml:base="http://localhost:4000/vanilla-vqa/">&lt;p&gt;Visual Question Answering (VQA) is the task of answering questions about a given piece of visual content such as an image, video or infographic.
+As seen in the examples below, answering questions about visual content requires a variety of skills include recognizing entities and objects, reasoning about their interactions with each other, both spatially and temporally, reading text, parsing audio, interpreting abstract and graphical illustrations as well as using external knowledge not directly present in the given content.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-intro.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While seemingly an easy task for humans, VQA affords several challenges to AI systems spanning the fields of natural language processing, computer vision, audio processing, knowledge representation and reasoning. Over the past few years, the advent of deep learning, availability of large datasets to train VQA models as well as the hosting of a number of benchmarking contests have contributed to a surge of interest in VQA amongst researchers in the above disciplines.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-vqa-v1-dataset-and-metric&quot;&gt;The VQA-v1 dataset and metric&lt;/h1&gt;
+
+&lt;p&gt;One of the early datasets for this task that became quite popular was the &lt;a href=&quot;http://arxiv.org/pdf/1505.00468.pdf&quot;&gt;VQA-v1&lt;/a&gt; dataset. The VQA-v1 dataset is a very large dataset consisting of two types of images: natural images (referred to as &lt;em&gt;real images&lt;/em&gt;) as well as synthetic images (referred to as &lt;em&gt;abstract scenes&lt;/em&gt;) and comes in two answering modalities: &lt;em&gt;multiple choice&lt;/em&gt; question answering (the task of selecting the right answer amongst a set of choices) as well as &lt;em&gt;open ended&lt;/em&gt; question answering (the task of generating an answer with an open ended vocabulary). Owing to its difficulty and real world applicability, &lt;em&gt;open ended&lt;/em&gt; question answering about natural image content has become the most popular VQA task amongst the four dataset flavors.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;real images&lt;/em&gt; fraction of the VQA-v1 dataset consists of over 200,000 natural images sourced from the MS-COCO dataset, a large scale dataset of images used to benchmark tasks such as object detection, segmentation and image captioning. Each image is paired with 3 questions written down by crowdsourced annotators. The dataset contains a variety of questions such as: &lt;em&gt;What color&lt;/em&gt;, &lt;em&gt;What kind&lt;/em&gt;, &lt;em&gt;Why&lt;/em&gt;, &lt;em&gt;How many&lt;/em&gt;, &lt;em&gt;Is the&lt;/em&gt;, etc. To account for potential disagreements between humans for some questions as well as crowd sourcing noise, each question is accompanied by 10 answers. Most answers are short and to the point, such as &lt;em&gt;yes&lt;/em&gt;, &lt;em&gt;no&lt;/em&gt;, &lt;em&gt;red&lt;/em&gt;, &lt;em&gt;dog&lt;/em&gt; and &lt;em&gt;coca cola&lt;/em&gt; with close to 99% of the answer containing 3 or fewer words.&lt;/p&gt;
+
+&lt;p&gt;Given an image and a question, the goal of a VQA system is to produce an answer that matches those provided by human annotators. For the &lt;em&gt;open ended&lt;/em&gt; answering modality, the evaluation metric used is:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\textrm{accuracy} = \textrm{min}\left ( \frac{\textrm{number of annotator answers that match the generated answer}}{3} , 1\right )&lt;/script&gt;
+
+&lt;p&gt;The intuition behind this metric is as follows. If a system generates an answer also produced by at least 3 unique annotators, it gets a maximum score of 1 on account of producing a popular answer. If it generates an answer that isn’t present amongst the 10 candidates, it gets a score of 0, and it is assigned a fractional score if it produces an answer that is deemed rare. If the denominator 3 is lowered to 1, wrong answers in the dataset (present due to annotator noise) will receive maximum credit. Conversely, if it is raised towards 10, a system producing the right answer will only receive partial credit if the answer choices consist of synonyms or happen to contain just a few of noisy answers.&lt;/p&gt;
+
+&lt;p&gt;Learn more about the VQA-v1 dataset here:&lt;/p&gt;
+
+&lt;div class=&quot;paper-post&quot;&gt;
+  &lt;div class=&quot;papertext-post&quot;&gt;
+    &lt;pubtitlepost&gt;&lt;a class=&quot;paperpost&quot; href=&quot;http://arxiv.org/pdf/1505.00468.pdf&quot;&gt;VQA: Visual Question Answering&lt;/a&gt;&lt;/pubtitlepost&gt;
+
+    &lt;p class=&quot;papertext-post&quot;&gt;&lt;/p&gt;
+    &lt;pubauthorspost&gt;Stanislaw Antol, Aishwarya Agrawal, Jiasen Lu, Margaret Mitchell, Dhruv Batra, C. Lawrence Zitnick, Devi Parikh&lt;/pubauthorspost&gt;
+    &lt;p class=&quot;papertext-post&quot;&gt;&lt;/p&gt;
+    &lt;pubvenuepost&gt;ICCV 2015&lt;/pubvenuepost&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;when-open-ended-isnt-really-that-open-ended&quot;&gt;When open ended isn’t really that open ended&lt;/h1&gt;
+
+&lt;p&gt;Generating answers for open ended questions requires training a model that inputs an image and corresponding question and outputs a sequence of words using a decoder. However, training decoders is often more cumbersome than training a system that simply picks amongst a pool of K possible answers. As it turns out, most answers in datasets such as VQA-v1 tend to cluster into a manageable set of a few thousand answers. For instance the 1000 most common answers in VQA-v1 cover roughly 83% of all answers in the dataset. This allows us to reformulate the open ended question answering problem into a K-way multiple choice problem where the same K choices are presented for every question. As K increases, the number of answer choices that the model has to choose from increases. This allows the model to potentially answer a higher fraction of questions correctly, but also usually requires a larger model and more training data. Most VQA researchers work with the top 1000 answer classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-open-ended.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;a-baseline-vqa-model&quot;&gt;A baseline VQA model&lt;/h1&gt;
+
+&lt;p&gt;The image below shows the architecture of a simple VQA neural network. The image is fed into a convolutional neural network (CNN) such as ResNet-18 which outputs a feature vector encoding the contents of the image and is referred to as an image embedding. The question is featurized by computing an average of the word2vec vectors over all the words in the question, resulting in a question embedding. These embedding vectors, which compactly represent the image and question contents have different dimensions. Hence they are first projected into the same number of dimensions using corresponding fully connected layers (a linear transformation) and then combined using pointwise multiplication (multiplying values at corresponding dimensions). The final stage of the VQA model is a multilayer perceptron with a softmax non-linearity at the end that outputs a score distribution over each of the top K answers. Converting the open ended question answering to a K-way classification task allows us to train the VQA model using a cross entropy loss.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-baseline.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image backbone is initialized with weights obtained from a network such as ResNet-18, trained on the ImageNet classification dataset. This initialization provides several advantages: First, it leads to faster training, since training a large image CNN from scratch is usually quite expensive. Second, this allows the VQA model to exploit knowledge obtained from the ImageNet dataset, which may be very useful to answer questions about objects in images. Third, if the image CNN weights are not fine-tuned on the VQA dataset, the image representations for the entire training dataset can be pre-computed and stored on disk, which results in less memory consumption while training the VQA model.&lt;/p&gt;
+
+&lt;h1 id=&quot;many-simple-variants-of-the-baseline-model&quot;&gt;Many simple variants of the baseline model&lt;/h1&gt;
+
+&lt;p&gt;One can easily tweak this simple VQA architecture in several ways to arrive at a bunch of different VQA models as shown in the image below.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Image Embedding&lt;/em&gt; : The image can be passed through a variety of image embedding neural networks (each pre-initilaized with the corresponding ImageNet variant). Typically, VQA task accuracy correlates well with the accuracy obtained by the network architecture on the ImageNet classification task (for example, a VQA baseline with ResNet-50 does better than a baseline with AlexNet).&lt;/p&gt;
+
+&lt;p&gt;This suggests that (a) Network architectures that perform well at image classification also perform well at VQA, and (b) The knowledge obtained from ImageNet and encoded within the parameters of the image embedding network aids the task of VQA, and a better knowledge representation leads to improved metrics on VQA.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Text Embedding&lt;/em&gt; : word2vec embeddings encode each word into a fixed dimensional vector which captures the syntax and semantics of that word. One can easily substitute this embedding by any other word embedding such as Glove. Word embeddings that work better on a variety of NLP tasks, typically work better for the VQA task.&lt;/p&gt;
+
+&lt;p&gt;Another simple variant, is to use a recurrent neural network such as an LSTM to encode the sequence of word embeddings, instead of simply averaging the word vectors. In contrast to averaging, using an LSTM preserves the order of the words in the question and hence leads to an improved VQA accuracy.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Combining the word vectors&lt;/em&gt; : There are several easy and cheap ways of combining representations from the image and text modality: Pointwise operations as well as concatenation. Concatenation leads to an increase in the number of parameters for the ensuing network. There isn’t a clear winner amongst these simple variants, although pointwise multiplication tends to be the most common option across research papers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-baseline-variants.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;multiple-choice-vqa-systems&quot;&gt;Multiple choice VQA systems&lt;/h1&gt;
+
+&lt;p&gt;When the answer choices are known a-priori (such as in multiple choice settings), the above VQA network can be easily extended to also consume the embedding of a single answer choice. Instead of predicting an answer choice (as was done above), the network now predicts if the provided answer choice is True or False. A simple yet important modification involves replacing the final softmax function with a sigmoid function and predicting a single score. If M answer choices are provided in the multiple choice scenario, the network needs to be run M times, once for each answer choice and the final prediction involves choosing the answer choice that provided the highest score.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-multiple-choice.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When the answer choices are fed into the network, the resulting models obtain higher VQA accuracies. The disadvantage is that the network needs to be M times. Researchers have also used this variant in the open ended setting by running the model through K times, once each for the top K answers. This is slow, but it also provided improved performance.&lt;/p&gt;
+
+&lt;p&gt;Learn more about simple yet powerful VQA baselines for the multiple choice and open ended settings here:&lt;/p&gt;
+
+&lt;div class=&quot;paper-post&quot;&gt;
+  &lt;div class=&quot;papertext-post&quot;&gt;
+    &lt;pubtitlepost&gt;&lt;a class=&quot;paperpost&quot; href=&quot;https://arxiv.org/pdf/1606.08390.pdf&quot;&gt;Revisiting Visual Question Answering Baselines&lt;/a&gt;&lt;/pubtitlepost&gt;
+
+    &lt;p class=&quot;papertext-post&quot;&gt;&lt;/p&gt;
+    &lt;pubauthorspost&gt;Allan Jabri, Armand Joulin, Laurens van der Maaten&lt;/pubauthorspost&gt;
+    &lt;p class=&quot;papertext-post&quot;&gt;&lt;/p&gt;
+    &lt;pubvenuepost&gt;ECCV 2016&lt;/pubvenuepost&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;the-question-only-baseline&quot;&gt;The question only baseline&lt;/h1&gt;
+
+&lt;p&gt;An important baseline to consider is the question only baseline shown below which does not consider the image at all. Not looking at an image while answering a question about an image seems very counter intuitive right ? However, such a question only baseline performs reasonably well on the VQA-v1 dataset. The baseline model shown above obtains an accuracy of 57.75 where as the question only model obtains an accuracy of 48.76. These is a very high accuracy when you consider that the number of answer choices in the open ended scenario is very large (the top 1000 answers cover roughly 83% of all answers). How is this possible ?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/vanilla-vqa-question-only.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While the number of answer choices for the open ended scenario is very large, the inherent structure and regularities in the world result in just a few plausible answers given a question. For instance, the question “What color is the construction cone ?” can likely be answered by simply choosing a common color, reducing the space of answers from 1000s to roughly 10. Furthermore, construction cones are dominantly orange in the color in the world. Hence simply memorizing this fact and always answering “orange” for this question results in a reasonable VQA system that does not need to look at the image.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;To summarize, Visual Question Answering (VQA), the task of answering questions about visual content, has received a lot of attention recently amongst researchers. In this blog post I described a few VQA baseline models that perform reasonably well on standard benchmarks. These models have been extended in many interesting ways including the use of visual attention modules, object detection frameworks, counting modules, methods to fuse multi-modal information, etc. which I shall discuss in future blog posts. Stay tuned!&lt;/p&gt;</content><author><name>Ani Kembhavi</name></author><summary type="html">An introduction to visual question answering</summary></entry></feed>
