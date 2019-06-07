@@ -1,6 +1,6 @@
 ---
 title: May I have your attention please ?
-excerpt: "The vanilla attention mechanism and its numerous variants explored in Visual Question Answering"
+excerpt: "The attention mechanism and its numerous variants explored in Visual Question Answering"
 header:
   overlay_color: "#1d1d1d"
 classes: wide
@@ -83,9 +83,71 @@ Learn more about single and multi-hop VQA attention architectures here:
 
 {% include paper_post.html
   title="Stacked Attention Networks for Image Question Answering"
-  url=" https://arxiv.org/pdf/1511.02274v2.pdf"
+  url="https://arxiv.org/pdf/1511.02274v2.pdf"
   authors="Zichao Yang, Xiaodong He, Jianfeng Gao, Li Deng, Alex Smola"
   venue="CVPR 2016"
 %}
 
 Two-hop architectures have shown improvements over single hop ones, but moving to more hops hasn't shown significant gains. This is likely due to the fact that existing VQA datasets do not have many questions that require the model to hop around the image too many times and the fact that current mechanisms for adding hops aren't capable enough to yield good results. More research efforts are needed in this direction.
+
+# Attention as a conditional feature selection mechanism
+
+The process of attention between the question and image embeddings can be thought of as a conditional feature selection mechanism, where the set of features are the set of image region embeddings and the condition is the question embedding.
+
+This idea can be applied to conditionally filter not just within the image regions but also within channels in the image embedding by computing the affinity matrix as before but then pooling across the spatial dimension to arrive at an attention weight for each channel of the image embedding tensor.
+
+The standard VQA architectures use a single tensor extracted from the CNN as the image embedding, but the answer to the question may potentially lie in a different tensor in the network. For instance, if answering the question required parsing the texture of an object, this information may potentially lie within a tensor in the earlier stages of the network. To account for this, one can use the attention mechanism to select amongst image embedding tensors at different layers of the CNN. The basic idea is to compute attention weights across all tensors, sum the weights within a tensor and then softmax across the layers to arrive at the attention weight matrix.
+
+![](/assets/images/attention-channel.png)
+
+Learn more about similar ideas and their application to VQA and image captioning here:
+
+{% include paper_post.html
+  title="Improved Fusion of Visual and Language Representations by Dense Symmetric Co-Attention for Visual Question Answering"
+  url="http://openaccess.thecvf.com/content_cvpr_2018/papers/Nguyen_Improved_Fusion_of_CVPR_2018_paper.pdf"
+  authors="Duy-Kien Nguyen, Takayuki Okatani"
+  venue="CVPR 2018"
+%}
+
+{% include paper_post.html
+  title="SCA-CNN: Spatial and Channel-wise Attention in Convolutional Networks for Image Captioning"
+  url="http://openaccess.thecvf.com/content_cvpr_2017/papers/Chen_SCA-CNN_Spatial_and_CVPR_2017_paper.pdf"
+  authors="Long Chen, Hanwang Zhang, Jun Xiao, Liqiang Nie, Jian Shao, Wei Liu, Tat-Seng Chua"
+  venue="CVPR 2017"
+%}
+
+# Attending to the image and question
+
+While the above VQA models are able to attend to specific portions of the image, it may also be useful to attend to certain words or phrases in the question, often in a joint fashion.
+
+_Independent attention_ : One method is to attend to the words in a question in a manner similar to the attention over image regions and do this independently at each attention hop. The question attends to the image regions, and the image attends to the question words and this is repeated across hops.
+
+_Independent attention with joint conditioning_ : This method is similar to the above proposal but using an integrated conditioning vector, which is simply a sum of the two conditioning vectors at each attention hop.
+
+_Joint attention_ : This method involves creating an affinity matrix $$C \in T \times N$$ (T=number of image regions, N=number of words) that measures the relevance between every word in the question and every region in the image using a learnt affinity computation.
+
+$$
+C = tanh(v_Q^T W v_I)
+$$
+
+This affinity matrix is transformed to a set of image attention weights (relevance scores per image region) either non parametrically by computing a max over each row or parametrically using a small neural network. Similarly, the affinity matrix is also transformed to a set of word attention weights (relevance scores per word). The attention weight vectors are finally used to obtain filtered versions of the image and word embeddings.
+
+![](/assets/images/attention-joint.png)
+
+Learn more about attending to the image region and question words here:
+
+{% include paper_post.html
+  title="Hierarchical Question-Image Co-Attention for Visual Question Answering"
+  url="https://arxiv.org/pdf/1606.00061.pdf"
+  authors="Jiasen Lu, Jianwei Yang, Dhruv Batra , Devi Parikh"
+  venue="Neurips 2016"
+%}
+
+{% include paper_post.html
+  title="Dual Attention Networks for Multimodal Reasoning and Matching"
+  url="http://openaccess.thecvf.com/content_cvpr_2017/papers/Nam_Dual_Attention_Networks_CVPR_2017_paper.pdf"
+  authors="Hyeonseob Nam, Jung-Woo Ha, Jeonghee Kim"
+  venue="CVPR 2017"
+%}
+
+# Retaining the spatial layout of the image
