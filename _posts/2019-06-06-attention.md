@@ -118,11 +118,13 @@ Learn more about similar ideas and their application to VQA and image captioning
 
 # Attending to the image and question
 
-While the above VQA models are able to attend to specific portions of the image, it may also be useful to attend to certain words or phrases in the question, often in a joint fashion.
+While the above VQA models are able to attend to specific portions of the image, it may also be useful to attend to certain words or phrases in the question as the model parses the image in search of the answer.
 
-_Independent attention_ : One method is to attend to the words in a question in a manner similar to the attention over image regions and do this independently at each attention hop. The question attends to the image regions, and the image attends to the question words and this is repeated across hops.
+Conceptually, attending to the words in a question is similar to attending to the regions of an image. Just as the image is converted to a set of embeddings, one per region, the question is converted to a set of embeddings, one per word; and given a conditioning vector, the attention mechanism acts as a filter over the given set of embeddings. There are several nuances to consider such as the nature of the conditioning vector, the order of the attention between the two modalities, etc. which leads to a few variations.
 
-_Independent attention with joint conditioning_ : This method is similar to the above proposal but using an integrated conditioning vector, which is simply a sum of the two conditioning vectors at each attention hop.
+_Independent attention_ : One method is to attend to the words in a question in a manner similar to the attention over image regions and do this independently at each attention hop. The question attends to the image regions, and the image attends to the question words and this is repeated across hops. The resultant aggregate vectors are from the two modalities are combined and processed to get the answer.
+
+_Independent attention with joint conditioning_ : This method is similar to the above proposal but using an integrated conditioning vector, which is simply a sum of the two modal conditioning vectors at each attention hop.
 
 _Joint attention_ : This method involves creating an affinity matrix $$C \in T \times N$$ (T=number of image regions, N=number of words) that measures the relevance between every word in the question and every region in the image using a learnt affinity computation.
 
@@ -133,6 +135,8 @@ $$
 This affinity matrix is transformed to a set of image attention weights (relevance scores per image region) either non parametrically by computing a max over each row or parametrically using a small neural network. Similarly, the affinity matrix is also transformed to a set of word attention weights (relevance scores per word). The attention weight vectors are finally used to obtain filtered versions of the image and word embeddings.
 
 ![](/assets/images/attention-joint.png)
+
+In each of the above methods, the result is a set of filtered embeddings. These vectors are combined and sent into an MLP to produce the answer distribution. Converting a model from a one side attention over image regions to a two sided attention over the question and image is a straightforward swap of the attention module and usually results in better performance.
 
 Learn more about attending to the image region and question words here:
 
@@ -150,4 +154,47 @@ Learn more about attending to the image region and question words here:
   venue="CVPR 2017"
 %}
 
-# Retaining the spatial layout of the image
+# Contextualizing image embeddings
+
+A common mechanism to contextualize word embeddings is to pass them through a bi-directional LSTM as is done with most present day VQA models. This adds context to each word embedding from its neighbors on both sides. When the image is passed through a CNN, the receptive field of convolution and pooling operations adds a little bit of context to each image embedding from pixels in close proximity. Researchers have also experimented with more explicitly adding context to image embeddings.
+
+An obvious way to add context to image embeddings is to pass them through a bi-directional LSTM (with 1 or more layers), in a manner very similar to word embeddings. Image embeddings obtained from a CNN represent information about regions that are uniformly spaced on a 2 dimensional grid. While passing them through a 1 dimensional recurrent model seems to break this assumption, many works (outside of VQA) have found that this works very well and does not degrade performance compared to a more complex 2-d network of processing units.
+
+Another way to add neighboring context to image embeddings is to add self-attention layers to the image embeddings. This amounts to treating a single embedding as a conditioning vector, use it to attend to the set of image embeddings and then create an aggregated vector that is a sum of the original embedding and the filtered embedding. This self attention is repeated for each image embedding, resulting in a set of contextualized image embeddings.
+
+These methods are depicted in the image below.
+
+![](/assets/images/attention-image-context.png)
+
+Learn more about the effects of contextualizing image embeddings with recurrent models here:
+
+{% include paper_post.html
+  title="Multi-level Attention Networks for Visual Question Answering"
+  url="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/06/Multi-level-Attention-Networks-for-Visual-Question-Answering.pdf"
+  authors="Dongfei Yu, Jianlong Fu, Tao Mei, Yong Rui"
+  venue="CVPR 2017"
+%}
+
+Learn more about the effects of contextualizing image embeddings with self attention, including more sophisticated mechanisms than depicted above, in this paper:
+
+{% include paper_post.html
+  title="Dynamic Fusion with Intra- and Inter-modality Attention Flow for Visual Question Answering"
+  url="https://arxiv.org/pdf/1812.05252.pdf"
+  authors="Peng Gao, Zhengkai Jiang, Haoxuan You, Pan Lu, Steven Hoi, Xiaogang Wang, Hongsheng Li"
+  venue="CVPR 2019"
+%}
+
+Also, a systematic architecture that incorporates multiple layers self attention with cross attention is the Transformer architecture that has recently become quite popular in the vision and NLP communities. Learn more about Transformers here:
+
+{% include paper_post.html
+  title="Attention Is All You Need"
+  url="https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf"
+  authors="Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin"
+  venue="NeurIPS 2017"
+%}
+
+# Conclusion
+
+To summarize, the attention mechanism is a conceptually simple and effective mechanism to enable VQA models to focus on specific regions in an image and specific words in a question. Several variations have been proposed over the years, which has led to a gradual improvement in the performance of these models; and I have covered some key ones in the above discussion.
+
+All the methods discussed above divide the image into a uniform grid of pixels and used their embeddings for attention. But recent works have created embeddings for non uniform segmentation masks obtained from an image as well as objects detected in the image, with the latter approach particularly effective and popular. I'll discuss these approaches and more fun aspects of VQA in future blog posts. Stay tuned!
