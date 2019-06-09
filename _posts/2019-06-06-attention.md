@@ -3,6 +3,8 @@ title: May I have your attention please ?
 excerpt: "The attention mechanism and its numerous variants explored in Visual Question Answering"
 header:
   overlay_color: "#1d1d1d"
+  image: /assets/images/attention-q-i.png
+  og_image: /assets/images/attention-q-i.png
 classes: wide
 ---
 

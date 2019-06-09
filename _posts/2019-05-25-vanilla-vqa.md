@@ -3,13 +3,15 @@ title: Vanilla VQA
 excerpt: "An introduction to visual question answering"
 header:
   overlay_color: "#1d1d1d"
+  image: /assets/images/vanilla-vqa-multiple-choice.png
+  og_image: /assets/images/vanilla-vqa-multiple-choice.png
 classes: wide
 ---
 
 Visual Question Answering (VQA) is the task of answering questions about a given piece of visual content such as an image, video or infographic.
 As seen in the examples below, answering questions about visual content requires a variety of skills include recognizing entities and objects, reasoning about their interactions with each other, both spatially and temporally, reading text, parsing audio, interpreting abstract and graphical illustrations as well as using external knowledge not directly present in the given content.
 
-![](/assets/images/vanilla-vqa-intro.jpg)
+![](/assets/images/vanilla-vqa-intro.png)
 
 While seemingly an easy task for humans, VQA affords several challenges to AI systems spanning the fields of natural language processing, computer vision, audio processing, knowledge representation and reasoning. Over the past few years, the advent of deep learning, availability of large datasets to train VQA models as well as the hosting of a number of benchmarking contests have contributed to a surge of interest in VQA amongst researchers in the above disciplines.
 
@@ -40,13 +42,13 @@ Learn more about the VQA-v1 dataset here:
 
 Generating answers for open ended questions requires training a model that inputs an image and corresponding question and outputs a sequence of words using a decoder. However, training decoders is often more cumbersome than training a system that simply picks amongst a pool of K possible answers. As it turns out, most answers in datasets such as VQA-v1 tend to cluster into a manageable set of a few thousand answers. For instance the 1000 most common answers in VQA-v1 cover roughly 83% of all answers in the dataset. This allows us to reformulate the open ended question answering problem into a K-way multiple choice problem where the same K choices are presented for every question. As K increases, the number of answer choices that the model has to choose from increases. This allows the model to potentially answer a higher fraction of questions correctly, but also usually requires a larger model and more training data. Most VQA researchers work with the top 1000 answer classes.
 
-![](/assets/images/vanilla-vqa-open-ended.jpg)
+![](/assets/images/vanilla-vqa-open-ended.png)
 
 # A baseline VQA model
 
 The image below shows the architecture of a simple VQA neural network. The image is fed into a convolutional neural network (CNN) such as ResNet-18 which outputs a feature vector encoding the contents of the image and is referred to as an image embedding. The question is featurized by computing an average of the word2vec vectors over all the words in the question, resulting in a question embedding. These embedding vectors, which compactly represent the image and question contents have different dimensions. Hence they are first projected into the same number of dimensions using corresponding fully connected layers (a linear transformation) and then combined using pointwise multiplication (multiplying values at corresponding dimensions). The final stage of the VQA model is a multilayer perceptron with a softmax non-linearity at the end that outputs a score distribution over each of the top K answers. Converting the open ended question answering to a K-way classification task allows us to train the VQA model using a cross entropy loss.
 
-![](/assets/images/vanilla-vqa-baseline.jpg)
+![](/assets/images/vanilla-vqa-baseline.png)
 
 The image backbone is initialized with weights obtained from a network such as ResNet-18, trained on the ImageNet classification dataset. This initialization provides several advantages: First, it leads to faster training, since training a large image CNN from scratch is usually quite expensive. Second, this allows the VQA model to exploit knowledge obtained from the ImageNet dataset, which may be very useful to answer questions about objects in images. Third, if the image CNN weights are not fine-tuned on the VQA dataset, the image representations for the entire training dataset can be pre-computed and stored on disk, which results in less memory consumption while training the VQA model.
 
@@ -64,13 +66,13 @@ Another simple variant, is to use a recurrent neural network such as an LSTM to 
 
 _Combining the word vectors_ : There are several easy and cheap ways of combining representations from the image and text modality: Pointwise operations as well as concatenation. Concatenation leads to an increase in the number of parameters for the ensuing network. There isn't a clear winner amongst these simple variants, although pointwise multiplication tends to be the most common option across research papers.
 
-![](/assets/images/vanilla-vqa-baseline-variants.jpg)
+![](/assets/images/vanilla-vqa-baseline-variants.png)
 
 # Multiple choice VQA systems
 
 When the answer choices are known a-priori (such as in multiple choice settings), the above VQA network can be easily extended to also consume the embedding of a single answer choice. Instead of predicting an answer choice (as was done above), the network now predicts if the provided answer choice is True or False. A simple yet important modification involves replacing the final softmax function with a sigmoid function and predicting a single score. If M answer choices are provided in the multiple choice scenario, the network needs to be run M times, once for each answer choice and the final prediction involves choosing the answer choice that provided the highest score.
 
-![](/assets/images/vanilla-vqa-multiple-choice.jpg)
+![](/assets/images/vanilla-vqa-multiple-choice.png)
 
 When the answer choices are fed into the network, the resulting models obtain higher VQA accuracies. The disadvantage is that the network needs to be M times. Researchers have also used this variant in the open ended setting by running the model through K times, once each for the top K answers. This is slow, but it also provided improved performance.
 
@@ -87,7 +89,7 @@ Learn more about simple yet powerful VQA baselines for the multiple choice and o
 
 An important baseline to consider is the question only baseline shown below which does not consider the image at all. Not looking at an image while answering a question about an image seems very counter intuitive right ? However, such a question only baseline performs reasonably well on the VQA-v1 dataset. The baseline model shown above obtains an accuracy of 57.75 where as the question only model obtains an accuracy of 48.76. These is a very high accuracy when you consider that the number of answer choices in the open ended scenario is very large (the top 1000 answers cover roughly 83% of all answers). How is this possible ?
 
-![](/assets/images/vanilla-vqa-question-only.jpg)
+![](/assets/images/vanilla-vqa-question-only.png)
 
 While the number of answer choices for the open ended scenario is very large, the inherent structure and regularities in the world result in just a few plausible answers given a question. For instance, the question "What color is the construction cone ?" can likely be answered by simply choosing a common color, reducing the space of answers from 1000s to roughly 10. Furthermore, construction cones are dominantly orange in the color in the world. Hence simply memorizing this fact and always answering "orange" for this question results in a reasonable VQA system that does not need to look at the image.
 
