@@ -12,7 +12,7 @@ classes: wide
 
 Many questions however, require one to focus on specific parts of the image or certain words in the question or a combination of both. For example, consider the image and question below. Answering this question requires the model to focus on the tennis racket and tennis ball. The vanilla VQA model struggles to focus on such small yet relevant regions in images, primarily because the contents of the two modalities (image and text) get compressed into single vector representations.
 
-![](/assets/images/attention-motivation.png)
+![An example of a question in the Visual Question Answering task, highlighted with image regions relevant to the answer.](/assets/images/attention-motivation.png)
 
 The attention mechanism is a clever architectural modification that enables neural networks to focus in onto small portions of the provided context. It was first proposed for the task of machine translation where the decoder could focus on relevant parts of the source language text as it generated the target language text. This improved the quality of machine translation beyond models that encoded the entire source text into a single embedding which was then provided to the decoder.
 
@@ -28,7 +28,7 @@ _Image_ : The image is passed through a CNN and the output of a late-stage convo
 
 In contrast to vanilla VQA architectures which represented the entire image as a single embedding, we now have a set of embeddings that represent different parts of the image. Reperesenting the image as a set of region embeddings will allow the model to focus onto one or more of these regions. This tensor is reshaped and then projected via a linear transformation onto a $$d$$ dimensional space, so as to match the dimensionality of the question embedding. Lets name the resultant matrix $$v_I \in \mathbb{R}^{d \times T}$$, where $$T = c^2$$, and name the i-th column vector referring to the i-th region as $$v_i$$.
 
-![](/assets/images/attention-q-i.png)
+![Question and image embeddings used in the attention module for Visual Question Answering.](/assets/images/attention-q-i.png)
 
 The key element of the attention mechanism is the interaction between the question embedding and each of the image embeddings, that allows the network to focus on the different regions of image, conditioned on the question. Each interaction leads to a score referred to as an _attention weight_ which signifies the relevance of that image region to the question, and the resulting vector of scores, $$p_{att}$$,  is referred to as the _attention weight vector_. A softmax operation is applied to this vector which enforces that the attention weights sum to 1.
 
@@ -65,13 +65,13 @@ which is passed to a multi layer perceptron to obtain a distribution over the an
 
 The entire network including the attention module is trained end-to-end by minimizing the cross entropy loss between the predicted answer distribution and the ground truth. This mechanism is depicted in the figure below. This is commonly known as single hop attention since the interaction between the question and image modalities occurs a single time.
 
-![](/assets/images/attention-single-hop.png)
+![The single hop attention module for Visual Question Answering.](/assets/images/attention-single-hop.png)
 
 Attention mechanisms have been widely adopted in many different VQA architectures and have produced good gains in accuracy. Another interesting outcome of attention is the ability to visualize the attention weights. This is done by simply visualizing the weight vector as a heatmap, with large weights reflecting more relevant and small weights reflecting less relevant portions of the image.
 
 The image below shows examples of the attention mechanism at work in a VQA model. (Note: The examples below are from a model that is a bit more sophisticated than a single hop attention model, but they still reveal the kinds of attention maps that result from such architectures.) Its interesting to see that the model chooses to _attend_ to the baseball glove to determine the sport, the sink to determine the room and the snow (essentially everywhere) to determine the season.
 
-![](/assets/images/attention-examples.png)
+![Example of attention masks produced by a Visual Question Answering model.](/assets/images/attention-examples.png)
 
 # Multiple Hop Attention
 
@@ -79,11 +79,11 @@ While a single attention hop allows models to focus on small regions of the imag
 
 Converting a single hop attention architecture to a two hop attention is conceptually straightforward. The output of the first attention hop is the aggregated information vector $$\phi$$ that is obtained as a sum of the question embedding and the filtered image embedding. $$\phi$$ which can be thought of as an augmented question given the first attention and is used as the question embedding for the next attention hop. The image embeddings are the same ones used in the first attention hop. This procedure can be repeated several times to produce a multi hop attention architecture as shown below.
 
-![](/assets/images/attention-multi-hop.png)
+![The multi hop attention framework for Visual Question Answering.](/assets/images/attention-multi-hop.png)
 
 This model can also be trained end to end using the same loss function as before. As before, the attention weights at each hop can be visualized as heatmaps. In the figure below, the model attends to several parts of the image (presumably to find the bicycle and basket) and then attends to the contents of the basket in the second hop.
 
-![](/assets/images/attention-examples-multi-hop.png)
+![Examples of attention masks produced by a multi hop Visual Question Answering model.](/assets/images/attention-examples-multi-hop.png)
 
 Learn more about single and multi-hop VQA attention architectures here:
 
@@ -104,7 +104,7 @@ This idea can be applied to conditionally filter not just within the image regio
 
 The standard VQA architectures use a single tensor extracted from the CNN as the image embedding, but the answer to the question may potentially lie in a different tensor in the network. For instance, if answering the question requires parsing the texture of an object, this information may potentially lie within a tensor in the earlier stages of the network. To account for this, one can use the attention mechanism to select amongst image embedding tensors at different layers of the CNN. The basic idea is to compute attention weights across all tensors, sum the weights within a tensor and then softmax across the layers to arrive at the attention weights (one for each layer of the CNN).
 
-![](/assets/images/attention-channel.png)
+![Using attention as a condition feature selection mechanism in Visual Question Answering.](/assets/images/attention-channel.png)
 
 Learn more about similar ideas and their application to VQA and image captioning here:
 
@@ -142,7 +142,7 @@ $$
 
 This affinity matrix is transformed to a set of image attention weights (relevance scores per image region) either non parametrically by computing a max over each row or parametrically using a small neural network. Similarly, the affinity matrix is also transformed to a set of word attention weights (relevance scores per word). The attention weight vectors are finally used to obtain filtered versions of the image and word embeddings.
 
-![](/assets/images/attention-joint.png)
+![Multiple ways to attend on the image and question in Visual Question Answering.](/assets/images/attention-joint.png)
 
 In each of the above methods, the result is a set of filtered embeddings. These vectors are combined and sent into an MLP to produce the answer distribution. Converting a model from a one side attention over image regions to a two sided attention over the question and image is a straightforward swap of the attention module and usually results in better performance.
 
@@ -172,7 +172,7 @@ Another way to add neighboring context to image embeddings is to add self-attent
 
 These methods are depicted in the image below.
 
-![](/assets/images/attention-image-context.png)
+![Contextualizing image embeddings for Visual Question Answering.](/assets/images/attention-image-context.png)
 
 Learn more about the effects of contextualizing image embeddings with recurrent models here:
 
