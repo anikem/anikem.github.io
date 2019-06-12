@@ -4,6 +4,8 @@
   {% assign teaser = site.teaser %}
 {% endif %}
 
+{% assign og_image = post.header.og_image %}
+
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
@@ -34,5 +36,6 @@
       <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+    <img src="{{ og_image }}" width=400>
   </article>
 </div>
