@@ -68,6 +68,29 @@ font-family: $roboto;
 color: #000000;
 }
 
+div.blog-post {
+  background-color: #FFF;
+  padding-left: 0.75em;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  box-shadow: 4px 4px 2px #dddddd;
+}
+
+blogposttitle {
+ font-size: 24px;
+ font-weight: 600;
+ font-family: 'Roboto', sans-serif;
+}
+
+blogpostsubtitle {
+ font-size: 20px;
+ font-weight: 300;
+ font-family: 'Roboto', sans-serif;
+ color: #555555;
+}
+
+p.blog-post { margin: 5px 0;}
+
 a.homepage:link {
  text-decoration:  none;
  color: #4285F4;
@@ -246,6 +269,7 @@ div.papertext-post {
 
 p.papertext { margin: 10px 0;}
 p.papertext-post { margin: 10px 0;}
+
 
 /* ==========================================================================
    ARCHIVE
