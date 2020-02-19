@@ -22,6 +22,10 @@
     <pubinfo><a class="homepage" href="{{ include.specialurl }}">{{ include.specialtext }}</a></pubinfo>
     {% endif %}
 
+    {% if include.specialtext2 %}
+    <pubinfo><a class="homepage" href="{{ include.specialurl2 }}">| {{ include.specialtext2 }}</a></pubinfo>
+    {% endif %}
+
     {% if include.pdf %}
     <pubinfo><a class="homepage" href="{{ include.pdf }}">PDF</a></pubinfo>
     {% endif %}
