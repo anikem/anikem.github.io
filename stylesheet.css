@@ -74,6 +74,12 @@ a:hover {
   text-decoration: none;
 }
 
+a.media {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+
 body,
 td,
 th,
@@ -153,6 +159,17 @@ img.research {
   width: 200px;
 }
 
+img.news {
+  width: 150px;
+}
+
+img.media {
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
 table.news {
  background-color: #ffffff;
  border: 0px solid white;
@@ -182,4 +199,10 @@ table.news {
 
 span.special {
   color:#FF5050
+}
+
+table.media {
+ background-color: #ffffff;
+ border-spacing: 15px;
+ border: 2;
 }
