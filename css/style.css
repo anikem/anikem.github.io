@@ -1,0 +1,92 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+  /* color: black; */
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #c0c0c0;
+  border-bottom: 1px solid #fff;
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+  background-color: rgba(205, 236, 255, 0.75);
+}
+table.striped > tbody > tr:nth-child(even) {
+  background-color: rgba(205, 236, 255, 0.15);
+}
+
+table.stripedx > tbody > tr:nth-child(odd) {
+  background-color: rgba(255, 250, 225, 0.75);
+}
+table.stripedx > tbody > tr:nth-child(even) {
+  background-color: rgba(255, 250, 225, 0.15);
+}
+
+table.stripedy > tbody > tr:nth-child(odd) {
+  background-color: rgba(235, 250, 225, 0.75);
+}
+table.stripedy > tbody > tr:nth-child(even) {
+  background-color: rgba(235, 250, 225, 0.15);
+}
+
+.padcard {
+  padding: 15px 0px 0px 0px;
+}
+
+span.special {
+  color:#FF5050
+}
+
+table.media {
+ background-color: #ffffff;
+ border-spacing: 15px;
+ border: 2;
+}
+
+a.media {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+img.media {
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+table.collab {
+ background-color: #ffffff;
+ border-spacing: 0px;
+ border: 0px;
+}
+
+.collab th, td {
+  padding: 8px;
+  background-color:none;
+}
+
+.collab tr {
+    border-bottom: 0px solid black;
+}​
+
+.collab tr:last-child {
+    border-bottom: none;
+}
+
+.card .card-title {
+  font-size: 18px;
+  font-weight: 300;
+}
