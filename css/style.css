@@ -90,3 +90,11 @@ table.collab {
   font-size: 18px;
   font-weight: 300;
 }
+
+nav .brand-logo {
+  position: absolute;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.6rem;
+  padding: 0;
+}
